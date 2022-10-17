@@ -34,7 +34,7 @@ resource "aws_security_group" "web_traffic" {
 }
 
 resource "aws_instance" "web-server" {
-  ami                    = "ami-0ea0f26a6d50850c5"
+  ami                    = var.ami_id #Use Amazon Linux AMI
   instance_type          = "t2.micro"
   subnet_id              = var.pub_subnet[0]
   vpc_security_group_ids = [aws_security_group.web_traffic.id]
@@ -58,4 +58,9 @@ echo "First  web server" > /var/www/html/index.html
     Name   = "Web Server"
     Status = "Dev"
   }
+}
+
+output "ec2_public_ip" {
+  value = aws_instance.web-server.public_ip
+  description = "Web Server Public IP"
 }

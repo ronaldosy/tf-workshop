@@ -9,9 +9,7 @@ variable "region" {
   variable "pub_subnet" {
     type = list(string)
   }
-  
-  variable "ssm_role"{
-    type = string
-    default = "AccessEC2viaSessionManager"
-  }
-  
+
+variable "ami_id" {
+  type = string
+}
